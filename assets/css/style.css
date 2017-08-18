@@ -4,6 +4,12 @@
 
 img {
 	margin: 5px;
-	width: 300px;
-	height: 200px;
+}
+
+#form {
+	margin-top: 50px;
+}
+
+#attribution {
+	margin-top: 20px;
 }
