@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var topics = ['seinfeld', 'the office', 'parks and recreation', 'breaking bad', 'dexter', 'arrested development', '30 rock', 'the league'];
+	var topics = ['seinfeld', 'the Office', 'parks and recreation', 'breaking bad', 'dexter', 'arrested development', '30 rock', 'the league'];
 
 	function displayButtons() {
       $('#button-view').empty();
@@ -12,8 +12,6 @@ $(document).ready(function() {
 		$('#button-view').append(button);
 	  }
 	}
-
-	
 
 	function displayImages() {
 		$('#images').empty();
@@ -41,28 +39,41 @@ $(document).ready(function() {
 							  response.data[8].images.fixed_height.url,
 							  response.data[9].images.fixed_height.url]
 
+			var ratingArray = [response.data[0].rating,
+							   response.data[1].rating,
+							   response.data[2].rating,
+							   response.data[3].rating,
+							   response.data[4].rating,
+							   response.data[5].rating,
+							   response.data[6].rating,
+							   response.data[7].rating,
+							   response.data[8].rating,
+							   response.data[9].rating]
+
 			for (var i = 0; i < imageArray.length; i++) {
+				var figure = $('<figure>')
 				var image = $('<img>');
+				var figcaption = $('<figcaption>' + 'Rating: ' + ratingArray[i].toUpperCase() + '</figcaption>');
 				image.attr('src', imageArray[i]);
-				$('#images').append(image);
+				$('#images').append(figure);
+				figure.append(image);
+				figure.append(figcaption);
 			}
 		}); // ajax call
 	}
 
 	$('#add-button').click(function() {
-		// event.preventDefault();
+		event.preventDefault();
 		var userInput = $('#user-input').val();
 		console.log(userInput);
 		topics.push(userInput);
 		displayButtons();
 
-	});
-	
+	});	
 
 	$(document).on('click', '.show-btn', displayImages);
 		
-	displayButtons();
-	
+	displayButtons();	
 
 }); // document ready
 

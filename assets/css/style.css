@@ -1,5 +1,5 @@
-.btn {
-	margin: 5px;
+.show-btn {
+	margin: 10px 5px 5px 5px;
 }
 
 img {
@@ -12,4 +12,12 @@ img {
 
 #attribution {
 	margin-top: 20px;
+}
+
+figure {
+	display: inline-block;
+}
+
+figcaption {
+	margin-left: 5px;
 }
