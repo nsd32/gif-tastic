@@ -1,3 +1,7 @@
+body {
+	background-image: url('../images/paper_fibers.png');
+}
+
 .show-btn {
 	margin: 10px 5px 5px 5px;
 }
