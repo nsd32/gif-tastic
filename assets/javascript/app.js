@@ -13,18 +13,18 @@ $(document).ready(function() {
 		button.attr('data-value', topics[i]);
 		button.text(topics[i]);
 		$('#button-view').append(button);
-		
+
 	  }
 	}
 
 	function displayImages() {
 
 		$('#images').empty();
-        var apiKey = "f80e3efd237b439ca0f974513e6768e6";
+        var apiKey = "&api_key=f80e3efd237b439ca0f974513e6768e6";
 	    var search = $(this).attr('data-value');
 	    console.log(search)
-	    var limit = 10;
-	    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&limit=" + limit + "&api_key=" + apiKey;
+	    var limit = "&limit=10";
+	    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + limit + apiKey;
 		
 		$.ajax({
 
