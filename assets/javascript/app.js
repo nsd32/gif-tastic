@@ -60,6 +60,7 @@ $(document).ready(function() {
 		var userInput = $('#user-input').val();
 		console.log(userInput);
 		topics.push(userInput);
+		$('#user-input').val('');
 		displayButtons();
 
 	});	
