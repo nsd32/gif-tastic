@@ -17,6 +17,7 @@ $(document).ready(function() {
 	  }
 	}
 
+
 	function displayImages() {
 
 		$('#images').empty();
@@ -32,39 +33,19 @@ $(document).ready(function() {
 		  method: "GET"
 
 		}).done(function(response) {
-			
-			var imageArray = [
-							  response.data[0].images.fixed_height.url,
-							  response.data[1].images.fixed_height.url,
-							  response.data[2].images.fixed_height.url,
-							  response.data[3].images.fixed_height.url,
-							  response.data[4].images.fixed_height.url,
-							  response.data[5].images.fixed_height.url,
-							  response.data[6].images.fixed_height.url,
-							  response.data[7].images.fixed_height.url,
-							  response.data[8].images.fixed_height.url,
-							  response.data[9].images.fixed_height.url
-							 ]
 
-			var ratingArray = [
-							   response.data[0].rating,
-							   response.data[1].rating,
-							   response.data[2].rating,
-							   response.data[3].rating,
-							   response.data[4].rating,
-							   response.data[5].rating,
-							   response.data[6].rating,
-							   response.data[7].rating,
-							   response.data[8].rating,
-							   response.data[9].rating
-							  ]
+			var results = response.data;
+			console.log(results);
 
-			for (var i = 0; i < imageArray.length; i++) {
+			for (var i = 0; i < results.length; i++) {
 
 				var figure = $('<figure>')
 				var image = $('<img>');
-				var figcaption = $('<figcaption>' + 'Rating: ' + ratingArray[i].toUpperCase() + '</figcaption>');
-				image.attr('src', imageArray[i]);
+				var figcaption = $('<figcaption>' + 'Rating: ' + results[i].rating.toUpperCase() + '</figcaption>');
+				image.attr('src', results[i].images.fixed_height_still.url);
+				image.attr('data-still', results[i].images.fixed_height_still.url);
+				image.attr('data-animated', results[i].images.fixed_height.url);
+				image.attr('data-state', 'still');
 				$('#images').append(figure);
 				figure.append(image);
 				figure.append(figcaption);
@@ -73,7 +54,7 @@ $(document).ready(function() {
 		}); // ajax call
 	}
 
-	$('#add-button').click(function() {
+	$('#add-button').click(function(event) {
 
 		event.preventDefault();
 		var userInput = $('#user-input').val();
@@ -84,8 +65,18 @@ $(document).ready(function() {
 	});	
 
 	$(document).on('click', '.show-btn', displayImages);
+
+	$(document).on('click', 'img', function () {
+	  if ($(this).attr('data-state') === 'still') {
+	  	$(this).attr('src', $(this).attr('data-animated'));
+	  	$(this).attr('data-state', 'animate');
+	  } else {
+	  	$(this).attr('src', $(this).attr('data-still'));
+	  	$(this).attr('data-state', 'still');
+	  }
+	});
 		
-	displayButtons();	
+	displayButtons();
 
 }); // document ready
 
